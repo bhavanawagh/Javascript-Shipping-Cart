@@ -79,7 +79,7 @@ class UI {
         event.target.innerText = "In Cart";
         event.target.disabled = true;
         //get product from products
-        let cartItem = {...Storage.getProduct(id), amount:1};
+        let cartItem = {...Storage.getProduct(id), amount: 1};
         //add product to the cart 
         cart = [...cart, cartItem];
         //save cart in local storage
@@ -89,6 +89,7 @@ class UI {
         //display cart items
         this.addCartItem(cartItem);
         //show the cart
+        this.showCart();
       });
     });
   }
@@ -104,8 +105,8 @@ class UI {
   }
   addCartItem(item){
      const div = document.createElement('div');
-     div.classList.add('cart-items');
-         div.innerHTML = `<img ${item.image}
+     div.classList.add('cart-item');
+         div.innerHTML = `<img src=${item.image}
          alt="product"/>
          <div>
            <h4>${item.title}</h4>
@@ -119,7 +120,10 @@ class UI {
          </div>`;
          cartContent.appendChild(div);
   }
-  
+  showCart(){
+    cartOverlay.classList.add('transparentBcg');
+    cartDOM.classList.add('showCart');
+  }
 }
 
 //local storage
